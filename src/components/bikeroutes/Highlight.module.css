@@ -1,0 +1,14 @@
+.bikeroute {
+    background-color: #162b2b;
+    color: white;
+    border-radius: 6px;
+    padding: 3rem;
+    margin: 3rem auto;
+    width: 90%;
+    max-width: 40rem;
+  }
+  
+  .bikeroute p {
+    font-size: 2.5rem;
+  }
+  

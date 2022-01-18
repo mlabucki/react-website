@@ -1,16 +1,19 @@
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect  } from 'react-router-dom';
 
 
 import AllRoutes from './pages/AllRoutes';
 import RouteDetail from './pages/RouteDetail';
 import NewRoute from './pages/NewRoute';
-import Home from './pages/Home';
+
+import Layout from './components/layout/Layout';
+import NotFound from './pages/NoFound';
 
 function App() {
   return (
+    <Layout>
     <Switch>
       <Route path='/' exact>
-        <Home />
+        <Redirect to='/bikeroutes' />
       </Route>
       <Route path='/bikeroutes' exact>
         <AllRoutes />
@@ -22,9 +25,10 @@ function App() {
         <NewRoute />
       </Route>
       <Route path='*'>
-        <Redirect to='/' />
+        <NotFound/>
       </Route>
     </Switch>
+    </Layout>
   );
 }
 
