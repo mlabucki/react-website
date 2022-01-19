@@ -7,6 +7,8 @@ import NewRoute from './pages/NewRoute';
 
 import Layout from './components/layout/Layout';
 import NotFound from './pages/NoFound';
+import AuthPage from './pages/AuthPage';
+import UserProfile from './components/profile/UserProfile';
 
 function App() {
   return (
@@ -23,6 +25,12 @@ function App() {
       </Route>
       <Route path='/new-bikeroute'>
         <NewRoute />
+      </Route>
+      <Route path='/auth' exact>
+        <AuthPage/>
+      </Route>
+      <Route path='/profile' exact>
+        <UserProfile/>
       </Route>
       <Route path='*'>
         <NotFound/>
