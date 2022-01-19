@@ -41,7 +41,7 @@ const Comments = () => {
   }
 
   if(status === 'completed' && (!loadedComments || loadedComments.length === 0)){
-    comments = <p className='centered'>No comments were sdded yet!</p>
+    comments = <p className='centered'>No comments were added yet!</p>
   }
 
   return (

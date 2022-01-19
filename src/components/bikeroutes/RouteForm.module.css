@@ -47,4 +47,13 @@
   .actions button {
     font-size: 1.25rem;
   }
+
+  .invalid label {
+    color: #ca3e51;
+  }
+  
+  .invalid textarea {
+    border-color: #aa0b20;
+    background-color: #ffeff1;
+  }
   

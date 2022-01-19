@@ -19,9 +19,10 @@ const RouteDetail = () => {
 
     const {bikerouteId} = params;
 
-    const {sendRequest, status, data: loadedBikeroute, error} =  useHttp(getSingleBikeroute, true);
-
-    // const bikeroute = DUMMY_ROUTES.find((bikeroute) => bikeroute.id === params.bikerouteId)
+    const {sendRequest, status, data: loadedBikeroute, error} =  useHttp(
+        getSingleBikeroute,
+        true
+    );
     
     useEffect(()=> {
         sendRequest(bikerouteId);
@@ -49,7 +50,7 @@ const RouteDetail = () => {
             <Highlight name={loadedBikeroute.name} />
             <Route path={match.path} exact>
                 <div className='centered'>
-                    <Link className='btn--flat' to={`${match.path}/comments`}>
+                    <Link className='btn--flat' to={`${match.url}/comments`}>
                         Load Comments
                     </Link>
                 </div>
