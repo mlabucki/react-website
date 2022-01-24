@@ -27,20 +27,27 @@ const Comments = () => {
     setIsAddingComment(true);
   };
 
-  let comments;
+  
   const addedCommentHandler = useCallback(() => {
    sendRequest(bikerouteId);
   },[sendRequest, bikerouteId]);
 
+  let comments;
+
   if(status === 'pending'){
-    comments = <div className='centered'><LoadingSpinner/></div>
+    comments = (
+    <div className='centered'>
+      <LoadingSpinner/>
+    </div>
+    )
   };
 
-  if(status === 'completed' && (loadedComments && loadedComments>0)){
+  if(status === 'completed' && (loadedComments && loadedComments.length>0)){
     comments = <CommentsList comments={loadedComments}/>
   }
 
-  if(status === 'completed' && (!loadedComments || loadedComments.length === 0)){
+  if(status === 'completed' && (!loadedComments || loadedComments.length === 0)
+  ){
     comments = <p className='centered'>No comments were added yet!</p>
   }
 

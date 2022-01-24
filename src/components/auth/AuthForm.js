@@ -15,7 +15,7 @@ const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
-  const switchAuthModeHandler = () => {
+  const switchAuthModelHandler = () => {
     setIsLogin((prevState) => !prevState);
   };
 
@@ -98,7 +98,7 @@ const AuthForm = () => {
           <button
             type='button'
             className={classes.toggle}
-            onClick={switchAuthModeHandler}
+            onClick={switchAuthModelHandler}
           >
             {isLogin ? 'Create new account' : 'Login with existing account'}
           </button>
