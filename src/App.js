@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Route, Switch, Redirect  } from 'react-router-dom';
 
 
@@ -6,11 +7,15 @@ import RouteDetail from './pages/RouteDetail';
 import NewRoute from './pages/NewRoute';
 
 import Layout from './components/layout/Layout';
-import NotFound from './pages/NoFound';
+// import NotFound from './pages/NoFound';
 import AuthPage from './pages/AuthPage';
 import UserProfile from './components/profile/UserProfile';
+import AuthContext from './store/auth-context';
 
 function App() {
+  const authCtx = useContext(AuthContext);
+
+
   return (
     <Layout>
     <Switch>
@@ -26,14 +31,15 @@ function App() {
       <Route path='/new-bikeroute'>
         <NewRoute />
       </Route>
-      <Route path='/auth' exact>
+      {!authCtx.isLoggedIn && (<Route path='/auth' exact>
         <AuthPage/>
-      </Route>
-      <Route path='/profile' exact>
-        <UserProfile/>
+      </Route> )}
+      <Route path='/profile'>
+      { authCtx.isLoggedIn && <UserProfile />}
+      {!authCtx.isLoggedIn && <Redirect to='/auth' />}
       </Route>
       <Route path='*'>
-        <NotFound/>
+        <Redirect to='/' />
       </Route>
     </Switch>
     </Layout>
