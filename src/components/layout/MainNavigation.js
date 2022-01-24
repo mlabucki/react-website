@@ -1,36 +1,53 @@
-import { NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+
+import { Link } from 'react-router-dom';
+import AuthContext from '../../store/auth-context';
 
 import classes from './MainNavigation.module.css';
 
 
 const MainNavigation = () => {
-    return (<header className={classes.header}>
+    const authCtx = useContext(AuthContext);
+
+    const isLoggedIn = authCtx.isLoggedIn;
+
+
+    return (
+    <header className={classes.header}>
         <div className={classes.logo}>Great Bike Routes</div>
         <nav className={classes.nav}>
             <ul>
                 <li>
-                    <NavLink to='/bikeroutes' activeClassName={classes.active}>
+                    <Link to='/bikeroutes' activeClassName={classes.active}>
                         All Routes
-                    </NavLink>
+                    </Link>
                 </li>
+                {isLoggedIn && (
                 <li>
-                    <NavLink to='/new-bikeroute' activeClassName={classes.active}>
+                    <Link to='/new-bikeroute' activeClassName={classes.active}>
                         Add New Bike Route
-                    </NavLink>
+                    </Link>
                 </li>
+                )}
+                {!isLoggedIn && (
                 <li>
-                    <NavLink to='/auth' activeClassName={classes.active}>
+                    <Link to='/auth' activeClassName={classes.active}>
                         Login
-                    </NavLink>
+                    </Link>
                 </li>
+                )}
+                {isLoggedIn && (
                 <li>
-                    <NavLink to='/profile' activeClassName={classes.active}>
+                    <Link to='/profile' activeClassName={classes.active}>
                         Profile
-                    </NavLink>
+                    </Link>
                 </li>
+                )}
+                {isLoggedIn && (
                 <li>
                     <button className={classes.btn}>Logout</button>
                 </li>
+                )}
             </ul>
         </nav>
     </header>
