@@ -23,13 +23,14 @@ function App() {
         <Redirect to='/bikeroutes' />
       </Route>
       <Route path='/bikeroutes' exact>
-        <AllRoutes />
+       <AllRoutes />        
       </Route>
       <Route path='/bikeroutes/:bikerouteId'>
         <RouteDetail />
       </Route>
       <Route path='/new-bikeroute'>
-        <NewRoute />
+      {authCtx.isLoggedIn && <NewRoute />}
+      {!authCtx.isLoggedIn && <Redirect to='/auth'/>}
       </Route>
       {!authCtx.isLoggedIn && (<Route path='/auth' exact>
         <AuthPage/>
