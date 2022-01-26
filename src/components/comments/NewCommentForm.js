@@ -1,8 +1,10 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState,  } from 'react';
+
 
 
 import useHttp from '../../hooks/use-http';
 import {addComment} from '../../lib/api';
+
 import LoadingSpinner from '../UI/LoadingSpinner';
 import classes from './NewCommentForm.module.css';
 
@@ -10,6 +12,7 @@ import classes from './NewCommentForm.module.css';
 const isEmpty = (value) => value.trim() === '';
 
 const NewCommentForm = (props) => {
+
   const [formInputsValidity, setFormInputsValidity] = useState({
     comment:true
   });
@@ -23,8 +26,10 @@ const NewCommentForm = (props) => {
   useEffect(()=> {
     if(status === 'completed' && !error){
       onAddedComment();
-    }
-  },[status, error, onAddedComment]);
+    } 
+    
+
+  },[status, error, onAddedComment, ]);
 
   const submitFormHandler = (event) => {
     event.preventDefault();
@@ -65,7 +70,7 @@ const NewCommentForm = (props) => {
         {!formInputsValidity.comment && <p>Please enter a valid name!</p>}
       </div>
       <div className={classes.actions}>
-        <button className='btn'>Add Comment</button>
+          <button className='btn'>Add Comment</button> 
       </div>
     </form>
   );

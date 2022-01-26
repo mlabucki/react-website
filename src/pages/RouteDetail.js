@@ -7,17 +7,12 @@ import useHttp from '../hooks/use-http';
 import { getSingleBikeroute } from '../lib/api';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 
-// const DUMMY_ROUTES = [
-//     { id: 'r1', name: 'first' },
-//     { id: 'r2', name: 'second' },
-// ];
-
 
 const RouteDetail = () => {
     const match = useRouteMatch();
     const params = useParams();
 
-    const {bikerouteId} = params;
+    const {bikerouteId, } = params;
 
     const {sendRequest, status, data: loadedBikeroute, error} =  useHttp(
         getSingleBikeroute,
@@ -47,7 +42,7 @@ const RouteDetail = () => {
 
     return (
         <Fragment>
-            <Highlight name={loadedBikeroute.name} />
+            <Highlight name={loadedBikeroute.name} city={loadedBikeroute.city} distance={loadedBikeroute.distance}/>
             <Route path={match.path} exact>
                 <div className='centered'>
                     <Link className='btn--flat' to={`${match.url}/comments`}>

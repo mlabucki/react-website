@@ -8,7 +8,8 @@ const RouteItem = (props) => {
           <blockquote>
             <p>{props.name}</p>
           </blockquote>
-          
+          <figcaption>{props.city}</figcaption>
+          <figcaption>{`${props.distance} km`}</figcaption>
         </figure>
         <Link className='btn' to={`/bikeroutes/${props.id}`}>
          

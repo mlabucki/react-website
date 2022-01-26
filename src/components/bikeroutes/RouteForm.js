@@ -12,34 +12,46 @@ const isEmpty = (value) => value.trim() ==='';
 const RouteForm = (props) => {
     const [isEntering, setIsEntering] = useState({
         name:true,
+        distance:true,
+        city: true,
     });
 
     const nameInputRef = useRef();
+    const distanceInputRef = useRef();
+    const cityInputRef = useRef();
     
     const submitFormHandler = (event) => {
         event.preventDefault();
 
         const enteredName = nameInputRef.current.value;
+        const enteredDistance = distanceInputRef.current.value;
+        const enteredCity = cityInputRef.current.value;
 
         const enteredNameIsValid = !isEmpty(enteredName);
+        const enteredDistanceIsValid = !isEmpty(enteredDistance);
+        const enteredCityIsValid = !isEmpty(enteredCity);
         
-        //validation of the different fileds in form
-
         setIsEntering({
             name: enteredNameIsValid,
+            distance: enteredDistanceIsValid,
+            city: enteredCityIsValid
         });
 
-        const formIsValid = enteredNameIsValid;
+        const formIsValid = enteredNameIsValid && enteredDistanceIsValid && enteredCityIsValid;
 
         if(!formIsValid){
             return;
         }
 
-        props.onAddRoute({ name: enteredName });
+        props.onAddRoute({ 
+            name: enteredName,
+            distance: enteredDistance,
+            city: enteredCity
+        });
     };
 
     const nameControlClasses = `${classes.control} ${
-        isEntering.name ? '' : classes.invalid
+        isEntering.name && isEntering.distance && isEntering.city ? '' : classes.invalid
     }`;
 
     const finishEnteringHandler = () => {
@@ -70,6 +82,16 @@ const RouteForm = (props) => {
                         <label htmlFor='text'>Name</label>
                         <textarea id='name' rows='5' ref={nameInputRef} />
                         {!isEntering.name && <p>please enter a valid name!</p>}
+                    </div>
+                    <div className={nameControlClasses}>
+                        <label htmlFor='number'>Distance</label>
+                        <textarea id='name' rows='5' ref={distanceInputRef} />
+                        {!isEntering.distance && <p>please enter a valid distance!</p>}
+                    </div>
+                    <div className={nameControlClasses}>
+                        <label htmlFor='text'>Location</label>
+                        <textarea id='city' rows='5' ref={cityInputRef} />
+                        {!isEntering.city && <p>please enter a valid location!</p>}
                     </div>
                     <div className={classes.actions}>
                         <button onClick={finishEnteringHandler} className='btn'>Add Bike Route</button>

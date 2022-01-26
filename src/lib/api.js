@@ -32,6 +32,8 @@ export async function getSingleBikeroute(bikerouteId) {
 
   const loadedBikeroute = {
     id: bikerouteId,
+    // location: bikerouteCity,
+    // distance: bikerouteDistance,
     ...data,
   };
 

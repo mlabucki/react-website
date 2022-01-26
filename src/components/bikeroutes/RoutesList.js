@@ -46,6 +46,8 @@ const RoutesList = (props) => {
                         key={bikeroute.id}
                         id={bikeroute.id}
                         name={bikeroute.name}
+                        city={bikeroute.city}
+                        distance={bikeroute.distance}
                     />
                 ))}
             </ul>

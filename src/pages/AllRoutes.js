@@ -6,12 +6,6 @@ import {getAllRoutes} from '../lib/api';
 
 import NoRouteFound from '../components/bikeroutes/NoRouteFound';
 
-// const DUMMY_ROUTES = [
-//     { id: 'r1', name: 'first' },
-//     { id: 'r2', name: 'second' },
-// ];
-
-
 const AllRoutes = (pops) => {
   
     const {sendRequest, status, data: loadedBikeroute, error} = useHttp(

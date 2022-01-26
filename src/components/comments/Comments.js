@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useParams } from 'react-router-dom';
+import {  useParams } from 'react-router-dom';
 
 
 import classes from './Comments.module.css';
@@ -8,6 +8,7 @@ import useHttp from '../../hooks/use-http';
 import { getAllComments } from '../../lib/api';
 import LoadingSpinner from '../UI/LoadingSpinner';
 import CommentsList from '../comments/CommentsList'
+
 
 const Comments = () => {
 
@@ -60,7 +61,7 @@ const Comments = () => {
         </button>
       )}
       {isAddingComment && 
-      <NewCommentForm 
+       <NewCommentForm 
       bikerouteId={params.bikerouteId} 
       onAddedComment={addedCommentHandler} 
       />
