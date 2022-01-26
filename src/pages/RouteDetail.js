@@ -1,14 +1,16 @@
-import { Fragment, useEffect } from 'react';
-import { useParams, Route, Link, useRouteMatch } from 'react-router-dom';
+import { Fragment, useEffect, useContext } from 'react';
+import { useParams, Route, Link, useRouteMatch, } from 'react-router-dom';
 
 import Highlight from '../components/bikeroutes/Highlight';
 import Comments from '../components/comments/Comments';
+import AuthContext from '../store/auth-context';
 import useHttp from '../hooks/use-http';
 import { getSingleBikeroute } from '../lib/api';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 
 
 const RouteDetail = () => {
+    const authCtx = useContext(AuthContext);
     const match = useRouteMatch();
     const params = useParams();
 
@@ -43,17 +45,18 @@ const RouteDetail = () => {
     return (
         <Fragment>
             <Highlight name={loadedBikeroute.name} city={loadedBikeroute.city} distance={loadedBikeroute.distance}/>
-            <Route path={match.path} exact>
-                <div className='centered'>
-                    <Link className='btn--flat' to={`${match.url}/comments`}>
-                        Load Comments
-                    </Link>
-                </div>
-            </Route>
-            <Route path={`${match.path}/comments`} >
+         
+            {!authCtx.isLoggedIn && <p className='centered'>You must be logged in to add comment</p>}
+            {authCtx.isLoggedIn && <Route path={match.path} exact>
+             <div className='centered'>
+                 <Link className='btn--flat' to={`${match.url}/comments`}>
+                     Load Comments
+                 </Link>
+             </div>
+            </Route>}
+            {authCtx.isLoggedIn && <Route path={`${match.path}/comments`} >
                 <Comments />
-            </Route>
-
+            </Route>}
         </Fragment>
     );
 };
